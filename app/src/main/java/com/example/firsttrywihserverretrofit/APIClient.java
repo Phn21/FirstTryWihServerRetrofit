@@ -1,7 +1,5 @@
 package com.example.firsttrywihserverretrofit;
 
-import com.example.firsttrywihserverretrofit.Certificate.UnsafeOkHttpClient;
-
 import java.security.cert.CertificateException;
 
 import javax.net.ssl.HostnameVerifier;
@@ -13,28 +11,24 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
 
     static Retrofit getClient(){
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+////                .certificatePinner(CertificatePinner.)
+//                .build();
 
-//        OkHttpClient clienta = new OkHttpClient();
-//        SSLContext sslContext = SslUtils.getSslContextForCertificateFile(context, "BPClass2RootCA-sha2.cer");
-//        clienta.setSslSocketFactory(sslContext.getSocketFactory());
-
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
-//                .certificatePinner(CertificatePinner.)
-                .build();
-        OkHttpClient client1 = UnsafeOkHttpClient.getUnsafeOkHttpClient();
 
         return new Retrofit.Builder()
-                .baseUrl("https://213.131.53.166:5501/")
+                .baseUrl("https://213.131.53.166:5501/api/")
                 .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(ScalarsConverterFactory.create())
                 .client(getUnsafeOkHttpClient1())
                 .build();
     }
